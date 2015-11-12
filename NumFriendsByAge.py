@@ -1,7 +1,10 @@
+# This is the library that will do the map and reduce
 from mrjob.job import MRJob
 
+#The class that does the task
 class NumFriendsByAge(MRJob):
-    def mapper(self, key, line):
+    
+    def mapper(self, _, line):
         (userID, name, age, numFriends) = line.split(',')
         yield age, float(numFriends)
         
@@ -16,3 +19,5 @@ class NumFriendsByAge(MRJob):
         
 if __name__ == '__main__':
     NumFriendsByAge.run()
+  
+# run using: !python NumFriendsByAge.py fakefriends.csv > friendsbyage.txt

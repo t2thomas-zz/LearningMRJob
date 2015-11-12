@@ -1,5 +1,7 @@
+# This is the library that will do the map and reduce
 from mrjob.job import MRJob 
 
+#The class that does the task
 class NumMoviesUsersWatch(MRJob):
     def mapper(self, key, line):
         (userID, movieID, rating, timestamp) = line.split('\t')
@@ -13,3 +15,5 @@ class NumMoviesUsersWatch(MRJob):
         
 if __name__ == '__main__':
     NumMoviesUsersWatch.run()
+    
+# run using: !python NumMoviesUsersWatch.py ml-100k\u.data > user_nummovies.txt
